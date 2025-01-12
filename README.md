@@ -42,3 +42,13 @@ dotnet ef database update
 ```
 ef migrations remove
 ```
+
+### Run in watch mode
+```
+dotnet watch run
+```
+
+### To test the endpoints navigate to 
+
+[Swagger](http://localhost:5293/swagger/index.html)
+
