@@ -38,6 +38,12 @@ dotnet ef migrations add init
 dotnet ef database update
 ```
 
+### Update migrations
+```
+dotnet ef migrations add add_relations
+dotnet ef database update
+```
+
 ### To Remove migrations 
 ```
 ef migrations remove

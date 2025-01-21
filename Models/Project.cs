@@ -14,5 +14,11 @@ namespace to_do_list_api.Models
         
         [Required]
         public string Name { get; set; } = string.Empty;
+
+        public string Status { get; set; } = "Active";
+
+        public ICollection<Tasks> Tasks { get; set; } = new List<Tasks>();
+
+        public ICollection<Tag> Tags { get; set; } = new List<Tag>();
     }
 }

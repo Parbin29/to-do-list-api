@@ -6,8 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace to_do_list_api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
+    [Produces("application/json")]
     public class TasksController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
