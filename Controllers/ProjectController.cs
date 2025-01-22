@@ -23,14 +23,24 @@ namespace to_do_list_api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Project>>> GetProjects()
         {
-            return await _context.Projects.ToListAsync();
+            return await _context.Projects
+            // .Include(p => p.Tasks)
+            .ToListAsync();
         }
 
         // 2. GET: api/Project/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Project>> GetProject(int id)
         {
-            var project = await _context.Projects.FindAsync(id);
+            var project = await _context.Projects
+                .Include(p => p.Tasks)
+                .FirstAsync(p => p.Id == id);
+
+            Console.WriteLine($"Project: {project.Name}");
+    foreach (var task in project.Tasks)
+    {
+        Console.WriteLine($" - Task: {task.Name}");
+    }
 
             if (project == null)
             {

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="todo.css">
+    <title>To Do List demo</title>
+</head>
+<body>
+    <div id="site-container">
+        <div id="navigation">
+            <h1>Demo</h1>
+            <p>To Do API</p>
+            
+                <label for="todo-name">Task name:</label>
+                <input type="text" name="todo-name" id="todo-name">
+                <input type="submit" value="Save" onclick="callToDoAPI()">
+            
+        </div>
+        <div id="todo-list"></div>
+    </div>
+    <script src="todo.js"></script>
+</body>
+</html>

@@ -15,6 +15,9 @@ namespace to_do_list_api.Models
 
         public DateTime Deadline { get; set; }
 
-        public ICollection<Tag> Tags { get; set; } = new List<Tag>(); 
+        public ICollection<Tag>? Tags { get; set; } = new List<Tag>(); 
+
+        public int? ProjectId { get; set; }
+        public Project? Project { get; set; } = null!;
     }
 }

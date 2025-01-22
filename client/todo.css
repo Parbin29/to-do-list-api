@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+  font-family: "Roboto", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 13px;;
+
+}
+#site-container {
+    display: grid;
+    grid-template-columns: 300px auto;
+}
+
+#navigation {
+
+}
+
+#news-articles {
+    padding: 20px 0 0 20px;
+    background-color: hsl(39, 8%, 65%);
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 230px);
+    gap: 20px;
+}
+
+#news-articles > div {
+    background-color: white;
+}
+
+#news-articles > div > div {
+    padding: 10px;
+}
+
+#news-articles > div > img {
+    width: 230px;
+    height: 230px;
+    object-fit: cover;
+}
+
+#news-articles > div > div > p {
+ padding: 6px 0;
+}
