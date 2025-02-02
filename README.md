@@ -27,6 +27,16 @@ Add the following packages from nuget:
 - Microsoft.EntityFrameworkCore.Tools
 - Microsoft.EntityFrameworkCore.Design
 
+### Add the following packages from Newtonsoft.Json to get the correct nested entities in response json
+```
+dotnet add package Newtonsoft.Json
+dotnet add package Microsoft.AspNetCore.Mvc.NewtonsoftJson
+```
+
+- Microsoft.EntityFrameworkCore.SqlServer
+- Microsoft.EntityFrameworkCore.Tools
+- Microsoft.EntityFrameworkCore.Design
+
 ### install ef core
 ```
 dotnet tool install --global dotnet-ef

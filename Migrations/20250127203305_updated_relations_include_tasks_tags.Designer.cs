@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using to_do_list_api.Data;
 
@@ -11,9 +12,11 @@ using to_do_list_api.Data;
 namespace to_do_list_api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250127203305_updated_relations_include_tasks_tags")]
+    partial class updated_relations_include_tasks_tags
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,7 +73,7 @@ namespace to_do_list_api.Migrations
                     b.ToTable("Tags");
                 });
 
-            modelBuilder.Entity("to_do_list_api.Models.Task", b =>
+            modelBuilder.Entity("to_do_list_api.Models.Tasks", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -101,7 +104,7 @@ namespace to_do_list_api.Migrations
                         .WithMany("Tags")
                         .HasForeignKey("ProjectId");
 
-                    b.HasOne("to_do_list_api.Models.Task", "Task")
+                    b.HasOne("to_do_list_api.Models.Tasks", "Task")
                         .WithMany("Tags")
                         .HasForeignKey("TaskId");
 
@@ -110,7 +113,7 @@ namespace to_do_list_api.Migrations
                     b.Navigation("Task");
                 });
 
-            modelBuilder.Entity("to_do_list_api.Models.Task", b =>
+            modelBuilder.Entity("to_do_list_api.Models.Tasks", b =>
                 {
                     b.HasOne("to_do_list_api.Models.Project", "Project")
                         .WithMany("Tasks")
@@ -128,7 +131,7 @@ namespace to_do_list_api.Migrations
                     b.Navigation("Tasks");
                 });
 
-            modelBuilder.Entity("to_do_list_api.Models.Task", b =>
+            modelBuilder.Entity("to_do_list_api.Models.Tasks", b =>
                 {
                     b.Navigation("Tags");
                 });

@@ -53,7 +53,7 @@ namespace to_do_list_api.Controllers
 
         // 4. PUT: api/Tag/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateTag(int id, Tag Tag)
+        public async Task<IActionResult> UpdateTag(int id, Tag Tag) // public async Task<IActionResult> UpdateTag(int id, Tag Tag)
         {
             if (id != Tag.Id)
             {

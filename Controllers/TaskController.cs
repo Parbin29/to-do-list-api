@@ -9,39 +9,37 @@ namespace to_do_list_api.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    public class TasksController : ControllerBase
+    public class TaskController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
 
-        public TasksController(ApplicationDBContext context)
+        public TaskController(ApplicationDBContext context)
         {
             _context = context;
         }
 
         // 1. GET: api/Task
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Tasks>>> GetTasks()
+        public async Task<IActionResult> GetTask()
         {
-            return await _context.Tasks.ToListAsync();
+            var tasks = await _context.Tasks.ToListAsync();
+            return Ok(tasks);
         }
 
         // 2. GET: api/Task/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Tasks>> GetTask(int id)
+        public async Task<IActionResult> GetTaskById(int id)
         {
-            var Tasks = await _context.Tasks.FindAsync(id);
+            var task = await _context.Tasks.FindAsync(id);
 
-            if (Tasks == null)
-            {
-                return NotFound();
-            }
+            if (task == null) return NotFound();
 
-            return Tasks;
+            return Ok(task);
         }
 
         // 3. POST: api/Task
         [HttpPost]
-        public async Task<ActionResult<Tasks>> CreateTask(Tasks Task)
+        public async Task<IActionResult> CreateTask(Models.Task Task)
         {
             _context.Tasks.Add(Task);
             await _context.SaveChangesAsync();
@@ -52,7 +50,7 @@ namespace to_do_list_api.Controllers
 
         // 4. PUT: api/Task/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateTask(int id, Tasks Task)
+        public async Task<IActionResult> UpdateTask(int id, Models.Task Task)
         {
             if (id != Task.Id)
             {

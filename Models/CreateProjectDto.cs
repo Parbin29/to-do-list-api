@@ -5,17 +5,9 @@ using System.Threading.Tasks;
 
 namespace to_do_list_api.Models
 {
-    public class Tag
+    public class CreateProjectDto
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-
-        public int? ProjectId { get; set; }
-
-        public Project? Project { get; set; }
-
-        public int? TaskId { get; set; }
-
-        public Task? Task { get; set; } = null!;
     }
 }

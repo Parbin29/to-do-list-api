@@ -16,9 +16,13 @@ builder.Services.AddDbContext<ApplicationDBContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
     });
 
-builder.Services.AddMvcCore().AddJsonOptions(
-    options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve
-);
+// builder.Services.AddMvcCore().AddJsonOptions(
+//     options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve
+// );
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+   options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore; 
+});
 
 // Add CORS services
 // builder.Services.AddCors(options =>
