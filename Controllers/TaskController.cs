@@ -22,7 +22,9 @@ namespace to_do_list_api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetTask()
         {
-            var tasks = await _context.Tasks.ToListAsync();
+            var tasks = await _context.Tasks
+                .Include(t => t.Tags)
+                .ToListAsync();
             return Ok(tasks);
         }
 
@@ -30,7 +32,9 @@ namespace to_do_list_api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTaskById(int id)
         {
-            var task = await _context.Tasks.FindAsync(id);
+            var task = await _context.Tasks
+                .Include(t => t.Tags)
+                .FirstOrDefaultAsync(t => t.Id == id);
 
             if (task == null) return NotFound();
 
@@ -92,6 +96,31 @@ namespace to_do_list_api.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        [HttpPost("Tags/{taskId}")]
+        public async Task<IActionResult> AddTagToTask(int taskId, [FromBody] string tagName)
+        {
+            var task =await _context.Tasks
+                .Include(t=> t.Tags)
+                .FirstOrDefaultAsync(t => t.Id == taskId);
+
+            if (task == null)
+            {
+                return NotFound($"task with id {taskId} not found");
+            }
+
+            var tag = await _context.Tags.FirstOrDefaultAsync(t=> t.Name == tagName);
+            if (tag == null)
+            {
+                tag = new Tag { Name = tagName };
+                _context.Tags.Add(tag);
+            }
+
+            task.Tags.Add(tag);
+            
+            await _context.SaveChangesAsync();
+            return Ok(tag);
         }
 
         private bool TaskExists(int id)

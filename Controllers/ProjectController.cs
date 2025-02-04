@@ -27,34 +27,7 @@ namespace to_do_list_api.Controllers
                 .Include(p => p.Tasks)
                 .ThenInclude(p => p.Tags)
             .ToListAsync();
-            /*
-            var projects = await _context.Projects
-                .Include(p => p.Tasks)
-                .ThenInclude(p => p.Tags)
-                .Select(p => new
-                {
-                    ProjectId = p.Id,
-                    Name = p.Name,
-                    IsActive = p.Status,
-                    Tags = p.Tags.Select(tag => new
-                    {
-                        TagId = tag.Id,
-                        Name = tag.Name
-                    }).ToList(),
-                    Tasks = p.Tasks.Select(task => new
-                    {
-                        TaskId = task.Id,
-                        Name = task.Name,
-                        Deadline = task.Deadline,
-                        Tags = task.Tags.Select(tag => new
-                        {
-                            TagId = tag.Id,
-                            Name = tag.Name
-                        }).ToList()
-                    }).ToList()
-                })
-                .ToListAsync();
-                */
+
             return Ok(projects);
         }
 
@@ -64,6 +37,7 @@ namespace to_do_list_api.Controllers
         {
             var project = await _context.Projects
                 .Include(p => p.Tasks)
+                .ThenInclude(p => p.Tags)
                 .FirstAsync(p => p.Id == id);
 
             Console.WriteLine($"Project: {project.Name}");
@@ -137,7 +111,7 @@ namespace to_do_list_api.Controllers
             return NoContent();
         }
 
-        [HttpPost("Project/Tasks/{projectId}")]
+        [HttpPost("Tasks/{projectId}")]
         public async Task<IActionResult> AddTaskToProject(int projectId, [FromBody]CreateTaskDto taskTemp)
         {
             var project = _context.Projects.FirstOrDefaultAsync(p => p.Id == projectId);
@@ -157,7 +131,7 @@ namespace to_do_list_api.Controllers
             return Ok(task);
         }
 
-        [HttpPost("Project/Tags/{projectId}")]
+        [HttpPost("Tags/{projectId}")]
         public async Task<IActionResult> AddTagToProject(int projectId, [FromBody] string tagName)
         {
             var project =await _context.Projects

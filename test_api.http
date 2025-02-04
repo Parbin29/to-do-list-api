@@ -31,4 +31,14 @@ Content-Type: {{contentType}}
   "project":{},
   "tags": []
 }
-### Create a Tag
+
+### Add tags to a task /api/Task/{taskId}
+POST {{host}}/api/Task/Tags/7 HTTP/1.1
+Content-Type: {{contentType}}
+
+{
+  "name": "Tag 1"
+}
+
+### Get all Tags
+GET {{host}}/api/Tag HTTP/1.1
