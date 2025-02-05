@@ -43,7 +43,7 @@ namespace to_do_list_api.Controllers
 
         // 3. POST: api/Task
         [HttpPost]
-        public async Task<IActionResult> CreateTask(Models.Task Task)
+        public async Task<IActionResult> CreateTask([FromBody] Models.Task Task)
         {
             _context.Tasks.Add(Task);
             await _context.SaveChangesAsync();

@@ -4,34 +4,70 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f4;
+    background: linear-gradient(135deg, #667eea, #764ba2);
 }
 .container {
     background: white;
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    max-height: 90vh;
     text-align: center;
+}
+.task-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+h2 {
+    color: #333;
+}
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.add-button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.add-button:hover {
+    background: #218838;
 }
 ul {
     list-style: none;
     padding: 0;
+    margin-top: 15px;
 }
 li {
     display: flex;
     justify-content: space-between;
-    background: #eee;
+    align-items: center;
+    background: #f8f9fa;
     padding: 10px;
     margin-top: 5px;
     border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
 }
-button {
-    background: red;
+.remove-button {
+    background: #dc3545;
     color: white;
     border: none;
     padding: 5px;
     cursor: pointer;
+    border-radius: 3px;
+}
+.remove-button:hover {
+    background: #c82333;
 }
 .completed {
     text-decoration: line-through;

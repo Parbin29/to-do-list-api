@@ -7,7 +7,7 @@ namespace to_do_list_api.Models
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
 
-        public DateTime Deadline { get; set; }
+        public DateTime Deadline { get; set; } = DateTime.Now + TimeSpan.FromDays(365);
 
         public int? ProjectId { get; set; }
         public Project? Project { get; set; }

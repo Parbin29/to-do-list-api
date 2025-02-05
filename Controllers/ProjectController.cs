@@ -3,8 +3,6 @@ using to_do_list_api.Data;
 using to_do_list_api.Models;
 
 using Microsoft.EntityFrameworkCore;
-// using System.Collections.Generic;
-// using System.Threading.Tasks;
 
 namespace to_do_list_api.Controllers
 {
