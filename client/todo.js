@@ -27,7 +27,7 @@ async function fetchTasks() {
         taskList.innerHTML = "";
         tasks.forEach(task => {
             let li = document.createElement("li");
-            li.innerHTML = `<span onclick="toggleTask(this)">${task.name}</span> | <span>Project ${task.projectId}</span> <button onclick="removeTask(this)">X</button>`;
+            li.innerHTML = `<span onclick="toggleTask(this)">${task.name}</span> | <span>Project ${task.projectId}</span> <button onclick="removeTask(this, ${task.id})">X</button>`;
             taskList.appendChild(li);
         });
     } catch (error) {
@@ -92,7 +92,7 @@ const addTask = async () => {
   let li = document.createElement("li");
   li.innerHTML = `
   <span onclick="toggleTask(this)">${newToDo.name}</span> | <span>Project ${newToDo.projectId}</span>
-  <button onclick="removeTask(this)">X</button>
+  <button onclick="removeTask(this, ${newToDo.id})">X</button>
   `;
 //   li.innerHTML = `
 //     <span onclick="toggleTask(this)">${taskText}</span>
@@ -104,8 +104,39 @@ const addTask = async () => {
   taskInput.value = "";
 };
 
-function removeTask(button) {
-  button.parentElement.remove();
+const callDeleteToDoAPI = async (taskId) => {
+  // let searchTerm = document.getElementById("todo-name");
+  let apiUrl = `http://localhost:5293/api/Task/${taskId}`;
+
+  let options = {
+    method: "DELETE",
+    headers: { 
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+    },
+  };
+
+  try {
+    let response = await fetch(apiUrl, options);
+
+    if (!response.ok) {
+      throw new Error("Failed to delete task");
+    }
+
+    let result = await response.json(); // Ensure you properly parse the response if needed
+    console.log("Task deleted:", result);
+
+  } catch (error) {
+    console.error(error);
+  }
+
+};
+
+const removeTask = (button, taskId) => {
+    // TODO: Call api to remove task
+  callDeleteToDoAPI(taskId);
+
+  button.parentElement.remove(); 
 }
 
 function toggleTask(span) {
